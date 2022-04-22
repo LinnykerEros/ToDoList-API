@@ -24,7 +24,7 @@ module.exports = {
     });
     try {
       await novaTarefa.save();
-      return response.status(201).json({ message: "Tarefa add succesfully" });
+      return response.status(201).json({ message: "Task add succesfully" });
     } catch (err) {
       response.status(400).json({ error: err.message });
     }
@@ -35,7 +35,7 @@ module.exports = {
     if (!tarefa) {
       return response
         .status(400)
-        .json({ error: "Your must inform a new Tarefa" });
+        .json({ error: "Your must inform a new Task" });
     }
     //normal, confude mesmo, mas é pq o nome do meu obj é tarefa kkkk
     if (tarefa) {
