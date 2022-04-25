@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 
 //tarefas
@@ -7,7 +8,7 @@ const tarefaMiddleware = require("./middlewares/tarefaMiddleware");
 const routes = express.Router();
 
 //ROTAS GET
-
+routes.get("/", (request, response) => response.send("Hello World"));
 routes.get("/tarefas", TarefaController.index);
 
 //ROTAS POST
