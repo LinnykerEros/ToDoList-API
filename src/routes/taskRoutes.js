@@ -1,14 +1,12 @@
-const { response } = require("express");
 const express = require("express");
 
-//tarefas
+//tasks
 const TaskController = require("./controllers/taskController");
 const taskMiddleware = require("./middlewares/taskMiddleware");
 
 const routes = express.Router();
 
 //ROTAS GET
-routes.get("/", (request, response) => response.send("Hello World"));
 routes.get("/tasks", TaskController.index);
 
 //ROTAS POST

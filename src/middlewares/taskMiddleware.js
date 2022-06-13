@@ -1,6 +1,6 @@
 const { validate: isUuid } = require("uuid");
 
-const Tarefa = require("../models/tarefa");
+const Task = require("../models/task");
 
 module.exports = {
   async validadeId(request, response, next) {
@@ -10,10 +10,10 @@ module.exports = {
     }
 
     try {
-      const tarefa = await Tarefa.findById(id);
-      response.tarefa = tarefa;
-      if (!tarefa) {
-        return response.status(404).json({ error: "Tarefa not found." });
+      const task = await Task.findById(id);
+      response.task = task;
+      if (!task) {
+        return response.status(404).json({ error: "Task not found." });
       }
     } catch (err) {
       return response.status(500).json({ error: err.message });

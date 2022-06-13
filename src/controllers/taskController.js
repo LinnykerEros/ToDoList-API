@@ -1,29 +1,29 @@
 const { v4: uuid } = require("uuid");
 
-const Tarefa = require("../models/tarefa");
+const Task = require("../models/task");
 
 module.exports = {
   async index(request, response) {
     try {
-      const tarefas = await Tarefa.find();
-      return response.status(200).json({ tarefas });
+      const tasks = await Task.find();
+      return response.status(200).json({ tasks });
     } catch (err) {
       response.status(500).json({ error: err.message });
     }
   },
 
   async store(request, response) {
-    const { tarefa } = request.body;
-    if (!tarefa) {
+    const { task } = request.body;
+    if (!task) {
       return response.status(400).json({ error: "Missing task" });
     }
 
-    const novaTarefa = new Tarefa({
+    const newTask = new Task({
       _id: uuid(),
-      tarefa,
+      task,
     });
     try {
-      await novaTarefa.save();
+      await newTask.save();
       return response.status(201).json({ message: "Task add succesfully" });
     } catch (err) {
       response.status(400).json({ error: err.message });
@@ -31,19 +31,19 @@ module.exports = {
   },
 
   async update(request, response) {
-    const { tarefa } = request.body;
-    if (!tarefa) {
+    const { task } = request.body;
+    if (!task) {
       return response
         .status(400)
         .json({ error: "Your must inform a new Task" });
     }
-    //normal, confude mesmo, mas é pq o nome do meu obj é tarefa kkkk
-    if (tarefa) {
-      response.tarefa.tarefa = tarefa;
+    //acesso a task, o que ela tem e atualizo com a que vem do body.
+    if (task) {
+      response.task.task = task;
     }
 
     try {
-      await response.tarefa.save();
+      await response.task.save();
       return response
         .status(200)
         .json({ message: "Task updated successfully" });
@@ -54,7 +54,7 @@ module.exports = {
 
   async delete(request, response) {
     try {
-      await response.tarefa.remove();
+      await response.task.remove();
       return response.status(200).json({ message: "Task deleted succesfully" });
     } catch (err) {
       return response.status(500).json({ error: err.message });
