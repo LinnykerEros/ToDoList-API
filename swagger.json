@@ -167,9 +167,8 @@
       }
     },
 
-    "/create/users": {
+    "/users/create": {
       "post": {
-        "security": [{ "bearerAuth": [] }],
         "summary": "User registration!",
         "description": "This route will be responsible for registering a user",
         "tags": ["Users"],
@@ -195,14 +194,77 @@
           }
         },
         "responses": {
-          "401": {
-            "description": "Unauthorized"
-          },
           "400": {
             "description": "This User already exist!"
           },
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/update/{id}": {
+      "put": {
+        "security": [{ "bearerAuth": [] }],
+        "summary": "User update!",
+        "description": "This route will be responsible for updating a User!",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "pedro_oliverira@gmail.com",
+                  "password": "13456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": {
+            "description": "Internal error!"
+          },
+          "200": {
+            "description": "User updated successfully!"
+          }
+        }
+      }
+    },
+    "/users/delete/{id}": {
+      "delete": {
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Delete a User!",
+        "description": "This route will be responsible for delete a User!",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted succesfully!"
           }
         }
       }
