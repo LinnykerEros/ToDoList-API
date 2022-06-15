@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const User = require("../../models/user");
-const user = require("../../models/user");
 
 module.exports = {
   async handle(request, response) {
@@ -13,12 +12,17 @@ module.exports = {
       });
     }
 
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return response.status(400).json({ message: "Email não encontrado!" });
+    }
+
     //uma função para validação de senha
     //comparo se a senha que veio do body é a mesma que está salva no banco.
     const passwordIsValid = (password) => {
-      return bcryptjs.compare(password);
+      return bcryptjs.compare(password, user.password_hash);
     };
-    console.log(response.User.password_hash);
+
     //se não for válida é retornado um erro
     if (!(await passwordIsValid(password))) {
       return response.json({ error: "Senha inválida!" });
