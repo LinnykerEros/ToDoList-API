@@ -8,14 +8,18 @@ taskRoutes.get("/", TaskController.index);
 
 //ROTAS POST
 
-taskRoutes.post("/", TaskController.store);
+taskRoutes.post("/create", TaskController.store);
 
 //ROTAS PUT
 
-taskRoutes.put("/:id", taskMiddleware.validadeId, TaskController.update);
+taskRoutes.put("/update/:id", taskMiddleware.validadeId, TaskController.update);
 
 //ROTAS DELETE
 
-taskRoutes.delete("/:id", taskMiddleware.validadeId, TaskController.delete);
+taskRoutes.delete(
+  "/delete/:id",
+  taskMiddleware.validadeId,
+  TaskController.delete
+);
 
 module.exports = taskRoutes;
