@@ -21,6 +21,45 @@
   "basePath": "/",
 
   "components": {
+    "schemas": {
+      "Tasks": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "task": {
+            "type": "string"
+          },
+          "taskCompleted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Users": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password_hash": {
+            "type": "string"
+          },
+          "permission": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "DateTime"
+          },
+          "update_at": {
+            "type": "DateTime"
+          }
+        }
+      }
+    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
