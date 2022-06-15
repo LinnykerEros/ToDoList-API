@@ -35,7 +35,7 @@ module.exports = {
     if (!task) {
       return response
         .status(400)
-        .json({ error: "Your must inform a new Task" });
+        .json({ error: "Your must inform a new Task!" });
     }
     //acesso a task, o que ela tem e atualizo com a que vem do body.
     if (task) {
@@ -46,7 +46,7 @@ module.exports = {
       await response.task.save();
       return response
         .status(200)
-        .json({ message: "Task updated successfully" });
+        .json({ message: "Task updated successfully!" });
     } catch (err) {
       response.status(500).json({ error: err.message });
     }
