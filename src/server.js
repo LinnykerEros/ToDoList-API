@@ -4,10 +4,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 var cors = require("cors");
-//
-// "200": {
-//   "description": "Usuário cadastrado com sucesso!"
-// },
 
 const routes = require("./routes/routes");
 const connectToDatabase = require("./database");
