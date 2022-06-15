@@ -3,8 +3,21 @@
   "info": {
     "title": "API ToDo List",
     "description": "Documentation API ToDo List",
+    "contact": {
+      "email": "linnykereros.gmail.com"
+    },
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "https://backend-to-do-list-api.herokuapp.com/",
+      "description": "API de produção"
+    },
+    {
+      "url": "http://localhost:5000",
+      "description": "API de test"
+    }
+  ],
   "basePath": "/",
 
   "components": {
